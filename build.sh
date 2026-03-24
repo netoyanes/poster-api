@@ -26,5 +26,7 @@ apt-get update -y && apt-get install -y --no-install-recommends \
   libcairo2 \
   libasound2
 
-# Install browser only — system deps already handled above
+# Install browser into the project folder so it persists at runtime
+# (Render's ~/.cache is not available after build)
+export PLAYWRIGHT_BROWSERS_PATH=/opt/render/project/src/pw-browsers
 python -m playwright install chromium
