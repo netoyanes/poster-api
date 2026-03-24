@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: poster-api
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn app:app --workers 2 --timeout 120"
+    envVars:
+      - key: API_SECRET
+        generateValue: true        # Render auto-generates a secret
+      - key: SLACK_BOT_TOKEN
+        sync: false                # You paste this in the Render dashboard
+      - key: SLACK_CHANNEL
+        value: "#design-feedback"
